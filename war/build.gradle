@@ -1,0 +1,10 @@
+plugins {
+    id 'war'
+}
+
+group 'org.tecappweb.recipes'
+version '0.1-SNAPSHOT'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
