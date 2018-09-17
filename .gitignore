@@ -133,3 +133,14 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+/nbproject/private/
+/war/nbproject/private/
+/ejb/nbproject/private/
+### NetBeans template
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+

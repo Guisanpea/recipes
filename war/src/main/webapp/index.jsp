@@ -12,5 +12,8 @@
   </head>
   <body>
     <h1>Welcome to my recipes page</h1>
+    <form action="test" method="post">
+      <button>Set</button>
+    </form>
   </body>
 </html>
