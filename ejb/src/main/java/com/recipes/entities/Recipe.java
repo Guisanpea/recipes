@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,8 +25,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,7 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Recipe")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r")
     , @NamedQuery(name = "Recipe.findById", query = "SELECT r FROM Recipe r WHERE r.id = :id")
@@ -45,8 +44,8 @@ public class Recipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -79,6 +78,9 @@ public class Recipe implements Serializable {
     @JoinColumn(name = "levelId", referencedColumnName = "id")
     @ManyToOne
     private Level levelId;
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
     public Recipe() {
     }
@@ -141,7 +143,6 @@ public class Recipe implements Serializable {
         this.createdAt = createdAt;
     }
 
-    @XmlTransient
     public List<Ingredient> getIngredientList() {
         return ingredientList;
     }
@@ -150,7 +151,6 @@ public class Recipe implements Serializable {
         this.ingredientList = ingredientList;
     }
 
-    @XmlTransient
     public List<Category> getCategoryList() {
         return categoryList;
     }
@@ -159,7 +159,6 @@ public class Recipe implements Serializable {
         this.categoryList = categoryList;
     }
 
-    @XmlTransient
     public List<User> getUserList() {
         return userList;
     }
@@ -174,6 +173,14 @@ public class Recipe implements Serializable {
 
     public void setLevelId(Level levelId) {
         this.levelId = levelId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

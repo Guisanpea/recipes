@@ -45,6 +45,7 @@ public class RegisterServlet extends HttpServlet {
         User userToAdd = new User();
         setPassword(request, userToAdd);
         setBirthDate(request, userToAdd);
+        userToAdd.setFullName(request.getParameter("fullname"));
         userFacade.create(userToAdd);
     }
 
