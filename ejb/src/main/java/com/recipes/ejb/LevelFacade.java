@@ -5,10 +5,14 @@
  */
 package com.recipes.ejb;
 
+import com.recipes.entities.Ingredient;
 import com.recipes.entities.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import static com.recipes.utils.JpaResultHelper.getSingleResultOrNull;
 
 /**
  *
@@ -28,5 +32,11 @@ public class LevelFacade extends AbstractFacade<Level> {
     public LevelFacade() {
         super(Level.class);
     }
-    
+
+    public Level findByName(String name) {
+        Query query = em.createNamedQuery("Level.findByName", Level.class);
+        query.setParameter("name", name);
+
+        return (Level) getSingleResultOrNull(query);
+    }
 }

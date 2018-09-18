@@ -5,6 +5,10 @@
  */
 package com.recipes.entities;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -24,6 +28,9 @@ import javax.validation.constraints.Size;
  *
  * @author archie
  */
+@Data
+@Builder
+@NoArgsConstructor
 @Entity
 @Table(name = "Experience")
 @NamedQueries({
@@ -45,66 +52,4 @@ public class Experience implements Serializable {
     private String name;
     @OneToMany(mappedBy = "experienceId")
     private List<User> userList;
-
-    public Experience() {
-    }
-
-    public Experience(Integer id) {
-        this.id = id;
-    }
-
-    public Experience(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Experience)) {
-            return false;
-        }
-        Experience other = (Experience) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.recipes.entities.Experience[ id=" + id + " ]";
-    }
-    
 }

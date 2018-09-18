@@ -2,7 +2,7 @@ package com.recipes.web;
 
 import com.recipes.ejb.UserFacade;
 import com.recipes.entities.User;
-import org.apache.commons.lang3.StringUtils;
+import lombok.SneakyThrows;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import javax.ejb.EJB;
@@ -13,63 +13,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static java.util.Objects.nonNull;
+import java.util.Optional;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
 
+    public static final BasicPasswordEncryptor ENCRYPTORS = new BasicPasswordEncryptor();
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     @EJB
     private UserFacade userFacade;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
-        String redirect;
-        if (nonNull(userFacade.findByUsername(username))) {
-            request.setAttribute("incorrectRegister", true);
-            redirect = "/register.jsp";
-        } else {
-            createUser(request);
-            redirect = "/login.jsp";
-        }
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirect);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirect(request, username));
         dispatcher.forward(request, response);
     }
 
+    private String redirect(HttpServletRequest request, String username) {
+        return Optional.ofNullable(userFacade.findByUsername(username))
+                .map(user -> {
+                    request.setAttribute("incorrectRegister", true);
+                    return "/register.jsp";
+                }).orElseGet(() -> {
+                    createUser(request);
+                    return "/login.jsp";
+                });
+    }
+
     private void createUser(HttpServletRequest request) {
-        User userToAdd = new User();
-        setPassword(request, userToAdd);
-        setBirthDate(request, userToAdd);
-        userToAdd.setFullName(request.getParameter("fullname"));
-        userFacade.create(userToAdd);
+        userFacade.create(User.builder()
+                .hashedPassword(ENCRYPTORS.encryptPassword(request.getParameter("password")))
+                .birthdate(getBirthDate(request))
+                .fullName(request.getParameter("fullname"))
+                .build());
     }
 
-    private void setBirthDate(HttpServletRequest request, User userToAdd) {
-        Date birthDate = null;
-        try {
-            String birthString = request.getParameter("birthDate");
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            birthDate = format.parse(birthString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        userToAdd.setBirthdate(birthDate);
+    @SneakyThrows(ParseException.class)
+    private Date getBirthDate(HttpServletRequest request) {
+        return DATE_FORMAT.parse(request.getParameter("birthDate"));
     }
 
-    private void setPassword(HttpServletRequest request, User userToAdd) {
-        String password = request.getParameter("password");
-        BasicPasswordEncryptor encryptors = new BasicPasswordEncryptor();
-        String hashedPassword = encryptors.encryptPassword(password);
-        userToAdd.setHashedPassword(hashedPassword);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
-          ServletException, IOException {
-
-    }
 }

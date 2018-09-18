@@ -2,7 +2,6 @@ package com.recipes.web;
 
 import com.recipes.ejb.UserFacade;
 import com.recipes.entities.User;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import javax.ejb.EJB;
@@ -13,42 +12,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
-
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
+import java.util.Optional;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
 
+    private static final BasicPasswordEncryptor ENCRYPTOR = new BasicPasswordEncryptor();
     @EJB
     private UserFacade userFacade;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        User user = userFacade.findByUsername(username);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirection(request));
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirection(request, password, user));
         dispatcher.forward(request, response);
     }
 
-    private String redirection(HttpServletRequest request, String password, User user) {
-        if (isNull(user) || incorrectPassword(user, password)) {
-            request.setAttribute("incorrectLogin", true);
-            return "/login.jsp";
-        }
-        return "/recipeList";
+    private String redirection(HttpServletRequest request) {
+        return Optional.ofNullable(userFacade.findByUsername(request.getParameter("username")))
+                .filter(user -> correctPassword(user, request.getParameter("password")))
+                .map(user -> "/recipeList")
+                .orElseGet(() -> {
+                    request.setAttribute("incorrectLogin", true);
+                    return "/login.jsp";
+                });
     }
 
-    private boolean incorrectPassword(User user, String password) {
-        BasicPasswordEncryptor encryptor = new BasicPasswordEncryptor();
-
-        return encryptor.checkPassword(user.getHashedPassword(), password);
-    }
-
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    private boolean correctPassword(User user, String password) {
+        return ENCRYPTOR.checkPassword(user.getHashedPassword(), password);
     }
 }

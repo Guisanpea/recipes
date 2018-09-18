@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : org.tecappweb : war-0.1-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/war/build/libs/exploded/war-0.1-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/war/build/libs/exploded/war-0.1-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="war_main/web/Web Gradle : war-0.1-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="war_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/war/out/production/resources" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.8" />
+          <element id="library" level="project" name="Gradle: org.jasypt:jasypt:1.9.2" />
+          <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax/javaee-api/7.0/51399f902cc27a808122edcbebfaa1ad989954ba/javaee-api-7.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.5.0/ec2410fdf7e0a3022e7c2a2e6241039d1abc1e98/javax.mail-1.5.0.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

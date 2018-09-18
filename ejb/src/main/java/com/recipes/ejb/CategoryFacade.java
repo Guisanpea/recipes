@@ -6,9 +6,14 @@
 package com.recipes.ejb;
 
 import com.recipes.entities.Category;
+import com.recipes.entities.Level;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import static com.recipes.utils.JpaResultHelper.getSingleResultOrNull;
 
 /**
  *
@@ -28,5 +33,11 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public CategoryFacade() {
         super(Category.class);
     }
-    
+
+    public Category findByName(String name) {
+        Query query = em.createNamedQuery("Category.findByName", Category.class);
+        query.setParameter("name", name);
+
+        return (Category) getSingleResultOrNull(query);
+    }
 }
