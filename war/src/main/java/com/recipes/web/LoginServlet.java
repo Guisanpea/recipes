@@ -22,23 +22,23 @@ import static java.util.Objects.nonNull;
 public class LoginServlet extends HttpServlet {
 
     @EJB
-    UserFacade userFacade;
+    private UserFacade userFacade;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String redirection;
         User user = userFacade.findByUsername(username);
 
-        if (isNull(user) || incorrectPassword(user, password)) {
-            redirection = "/login.jsp";
-            request.setAttribute("incorrectLogin", true);
-        } else {
-            redirection = "/recipeList";
-        }
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirection);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirection(request, password, user));
         dispatcher.forward(request, response);
+    }
+
+    private String redirection(HttpServletRequest request, String password, User user) {
+        if (isNull(user) || incorrectPassword(user, password)) {
+            request.setAttribute("incorrectLogin", true);
+            return "/login.jsp";
+        }
+        return "/recipeList";
     }
 
     private boolean incorrectPassword(User user, String password) {

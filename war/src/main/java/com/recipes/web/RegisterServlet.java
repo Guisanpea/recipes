@@ -24,7 +24,7 @@ import static java.util.Objects.nonNull;
 public class RegisterServlet extends HttpServlet {
 
     @EJB
-    UserFacade userFacade;
+    private UserFacade userFacade;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");

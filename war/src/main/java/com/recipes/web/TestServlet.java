@@ -16,7 +16,7 @@ import java.io.IOException;
 public class TestServlet extends HttpServlet {
 
     @EJB
-    UserFacade userFacade;
+    private UserFacade userFacade;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User(0);
