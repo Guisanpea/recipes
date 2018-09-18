@@ -2,10 +2,9 @@ plugins {
     id 'ear'
 }
 
-group 'org.tecappweb.recipes'
-version '0.1-SNAPSHOT'
-
 allprojects {
+    group 'org.tecappweb'
+    version '0.1-SNAPSHOT'
     repositories {
         mavenCentral()
     }

@@ -2,12 +2,11 @@ plugins {
     id 'war'
 }
 
-group 'org.tecappweb.recipes'
-version '0.1-SNAPSHOT'
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     providedCompile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
+    implementation group: 'org.jasypt', name: 'jasypt', version: '1.9.2'
+
     compileOnly project(':ejb')
 }

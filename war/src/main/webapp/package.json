@@ -1,0 +1,23 @@
+{
+  "name": "recipes",
+  "version": "0.1.0",
+  "description": "recipes app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guisanpea/recipes.git"
+  },
+  "author": "Guisanpea",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Guisanpea/recipes/issues"
+  },
+  "homepage": "https://github.com/Guisanpea/recipes#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
+    "bulma": "^0.7.1"
+  }
+}
