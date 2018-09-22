@@ -21,8 +21,8 @@ import java.util.Optional;
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
 
-    public static final BasicPasswordEncryptor ENCRYPTORS = new BasicPasswordEncryptor();
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final BasicPasswordEncryptor ENCRYPTORS = new BasicPasswordEncryptor();
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     @EJB
     private UserFacade userFacade;
 
@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
         userFacade.create(User.builder()
                 .hashedPassword(ENCRYPTORS.encryptPassword(request.getParameter("password")))
                 .birthdate(getBirthDate(request))
-                .fullName(request.getParameter("fullname"))
+                .fullName(request.getParameter("fullName"))
                 .build());
     }
 

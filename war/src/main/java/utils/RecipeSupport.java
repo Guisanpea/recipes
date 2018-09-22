@@ -1,4 +1,4 @@
-package com.recipes.web;
+package utils;
 
 import com.recipes.ejb.CategoryFacade;
 import com.recipes.ejb.IngredientFacade;
@@ -37,7 +37,7 @@ public class RecipeSupport {
                 .description(request.getParameter("description"))
                 .preparation(request.getParameter("preparation"))
                 .bPublic(nonNull(request.getParameter("public")))
-                .user(userFacade.findByUsername(request.getParameter("username")))
+                .userId(userFacade.findByUsername(request.getParameter("username")))
                 .levelId(levelFacade.findByName(request.getParameter("level")))
                 .ingredientList(getIngredients(request.getParameter("ingredients")))
                 .categoryList(getCategories(request.getParameter("categories")))

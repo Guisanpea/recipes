@@ -8,6 +8,7 @@ package com.recipes.entities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
 import java.util.List;
@@ -29,7 +30,6 @@ import javax.validation.constraints.Size;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @Entity
 @Table(name = "Level")
 @NamedQueries({
@@ -49,4 +49,9 @@ public class Level implements Serializable {
     private String name;
     @OneToMany(mappedBy = "levelId")
     private List<Recipe> recipeList;
+
+    @Tolerate
+    public Level(){
+
+    }
 }

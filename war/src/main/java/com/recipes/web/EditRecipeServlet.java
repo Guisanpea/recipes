@@ -1,6 +1,7 @@
 package com.recipes.web;
 
 import com.recipes.ejb.RecipeFacade;
+import utils.RecipeSupport;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -20,5 +21,7 @@ public class EditRecipeServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) {
         recipeFacade.edit(recipeSupport.getRecipe(request));
+
+        getServletContext().getRequestDispatcher("/listRecipes");
     }
 }

@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="resources/css/login.css">
 </head>
 
 <body>

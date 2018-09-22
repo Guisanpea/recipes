@@ -8,6 +8,7 @@ package com.recipes.entities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -20,17 +21,16 @@ import java.util.List;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @Entity
 @Table(name = "User")
 @NamedQueries({
-        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-        , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-        , @NamedQuery(name = "User.findByFullName", query = "SELECT u FROM User u WHERE u.fullName = :fullName")
-        , @NamedQuery(name = "User.findByBirthdate", query = "SELECT u FROM User u WHERE u.birthdate = :birthdate")
-        , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
-        , @NamedQuery(name = "User.findByHashedPassword", query = "SELECT u FROM User u WHERE u.hashedPassword = :hashedPassword")
-        , @NamedQuery(name = "User.findByLastRecipeAdded", query = "SELECT u FROM User u WHERE u.lastRecipeAdded = :lastRecipeAdded")})
+      @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+      , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
+      , @NamedQuery(name = "User.findByFullName", query = "SELECT u FROM User u WHERE u.fullName = :fullName")
+      , @NamedQuery(name = "User.findByBirthdate", query = "SELECT u FROM User u WHERE u.birthdate = :birthdate")
+      , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
+      , @NamedQuery(name = "User.findByHashedPassword", query = "SELECT u FROM User u WHERE u.hashedPassword = :hashedPassword")
+      , @NamedQuery(name = "User.findByLastRecipeAdded", query = "SELECT u FROM User u WHERE u.lastRecipeAdded = :lastRecipeAdded")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,7 +56,12 @@ public class User implements Serializable {
     private Date lastRecipeAdded;
     @JoinColumn(name = "experienceId", referencedColumnName = "id")
     @ManyToOne
-    private Experience experience;
+    private Experience experienceId;
     @OneToMany(mappedBy = "userId")
     private List<Recipe> recipeList;
+
+    @Tolerate
+    public User() {
+
+    }
 }

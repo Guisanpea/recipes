@@ -144,3 +144,6 @@ dist/
 nbdist/
 .nb-gradle/
 
+/EnterpriseApplication1/nbproject/private/
+/EnterpriseApplication1/EnterpriseApplication1-war/nbproject/private/
+/EnterpriseApplication1/EnterpriseApplication1-ejb/nbproject/private/

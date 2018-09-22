@@ -8,6 +8,7 @@ package com.recipes.entities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,7 +22,6 @@ import java.util.List;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @Entity
 @Table(name = "Recipe")
 @NamedQueries({
@@ -30,8 +30,8 @@ import java.util.List;
         , @NamedQuery(name = "Recipe.findByName", query = "SELECT r FROM Recipe r WHERE r.name = :name")
         , @NamedQuery(name = "Recipe.findByDescription", query = "SELECT r FROM Recipe r WHERE r.description = :description")
         , @NamedQuery(name = "Recipe.findByPreparation", query = "SELECT r FROM Recipe r WHERE r.preparation = :preparation")
-        , @NamedQuery(name = "Recipe.findByPublic1", query = "SELECT r FROM Recipe r WHERE r.public1 = :public1")
-        , @NamedQuery(name = "Recipe.findByUser", query = "SELECT r FROM Recipe r WHERE r.user = :user")
+        , @NamedQuery(name = "Recipe.findByPublic1", query = "SELECT r FROM Recipe r WHERE r.bPublic = :public1")
+        , @NamedQuery(name = "Recipe.findByUser", query = "SELECT r FROM Recipe r WHERE r.userId = :user")
         , @NamedQuery(name = "Recipe.findByCreatedAt", query = "SELECT r FROM Recipe r WHERE r.createdAt = :createdAt")})
 public class Recipe implements Serializable {
 
@@ -67,5 +67,10 @@ public class Recipe implements Serializable {
     private Level levelId;
     @JoinColumn(name = "userId", referencedColumnName = "id")
     @ManyToOne
-    private User user;
+    private User userId;
+
+    @Tolerate
+    public Recipe() {
+
+    }
 }

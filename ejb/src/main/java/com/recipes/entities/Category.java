@@ -8,6 +8,7 @@ package com.recipes.entities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -19,7 +20,6 @@ import java.util.List;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @Entity
 @Table(name = "Category")
 @NamedQueries({
@@ -42,4 +42,9 @@ public class Category implements Serializable {
             @JoinColumn(name = "recipeId", referencedColumnName = "id")})
     @ManyToMany
     private List<Recipe> recipeList;
+
+    @Tolerate
+    public Category() {
+
+    }
 }

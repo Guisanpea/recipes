@@ -12,12 +12,12 @@
 <html>
 <head>
   <title>Title</title>
-  <link rel="stylesheet" href="css/recipe.css">
+  <link rel="stylesheet" href="resources/css/recipe.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <%
   Recipe recipe = (Recipe) request.getAttribute("recipe");
-  String users = StringUtils.join(recipe.getUserList(), " - ");
+  String user = recipe.getUserId().getName();
   DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
   String date = df.format(recipe.getCreatedAt());
 %>
@@ -32,7 +32,7 @@
             <div class="media-content has-text-centered">
               <p class="title article-title"><%=recipe.getName()%></p>
               <div class="tags has-addons level-item">
-                <span class="tag is-rounded is-info">@<%=users%></span>
+                <span class="tag is-rounded is-info">@<%=user%></span>
                 <span class="tag is-rounded"><%=date%></span>
               </div>
             </div>

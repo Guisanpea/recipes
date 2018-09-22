@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":ejb:test" external.linked.project.path="$MODULE_DIR$/../../../ejb" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="org.tecappweb" external.system.module.type="sourceSet" external.system.module.version="0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output-test url="file://$MODULE_DIR$/../../../ejb/out/test/classes" />
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../ejb/src/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../../ejb/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../ejb/src/test/resources" type="java-test-resource" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="recipes-ejb_main" />
-    <orderEntry type="library" name="Gradle: javax:javaee-api:7.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.16.20" level="project" />
-    <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.5.0" level="project" />
-    <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
-  </component>
-  <component name="TestModuleProperties" production-module="ejb_main" />
-</module>
+<module external.linked.project.id=":ejb:test" external.linked.project.path="$MODULE_DIR$/../../../ejb" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="org.tecappweb" external.system.module.type="sourceSet" external.system.module.version="0.1-SNAPSHOT" type="JAVA_MODULE" version="4" />

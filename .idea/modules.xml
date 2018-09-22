@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejb/ejb.iml" filepath="$PROJECT_DIR$/.idea/modules/ejb/ejb.iml" group="ejb" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejb/ejb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ejb/ejb_main.iml" group="ejb" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejb/ejb_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ejb/ejb_test.iml" group="ejb" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejb/recipes-ejb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ejb/recipes-ejb_main.iml" group="ejb" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ejb/recipes-ejb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ejb/recipes-ejb_main.iml" group="ejb" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recipes-web.iml" filepath="$PROJECT_DIR$/.idea/modules/recipes-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/war/war.iml" filepath="$PROJECT_DIR$/.idea/modules/war/war.iml" group="war" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/war/war_main.iml" filepath="$PROJECT_DIR$/.idea/modules/war/war_main.iml" group="war" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/war/war_test.iml" filepath="$PROJECT_DIR$/.idea/modules/war/war_test.iml" group="war" />
     </modules>
   </component>
 </project>
