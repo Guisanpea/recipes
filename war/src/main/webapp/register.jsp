@@ -33,7 +33,7 @@
           <form action="register" method="post">
             <div class="field">
               <div class="control">
-                <input class="input is-large" type="text" placeholder="Your username" autofocus="">
+                <input class="input is-large" type="text" placeholder="Your username" name="username" autofocus="">
               </div>
             </div>
             <div class="field">

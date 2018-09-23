@@ -1,7 +1,8 @@
-version: '2'
+version: '3'
 
 services:
   db:
+    container_name: mariadb_recipies
     image: mariadb
     restart: always
     environment:
@@ -11,13 +12,10 @@ services:
       - 3306:3306
 
   adminer:
+    container_name: adminer
     image: adminer
+    depends_on:
+      - db
     restart: always
     ports:
       - 4040:8080
-
-  glassfish:
-    image: glassfish
-    restart: glassfish
-    ports:
-      - 8080:8080

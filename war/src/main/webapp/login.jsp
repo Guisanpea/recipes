@@ -44,9 +44,9 @@
             </div>
             <button class="button is-block is-primary is-large is-fullwidth"><a href="login">Log in</a></button>
           </form>
-          <% if ( nonNull(request.getAttribute("incorrectLogin"))) { %>
+          <% if (nonNull(request.getAttribute("incorrectLogin"))) { %>
           <hr/>
-          <div class="box is-danger">Incorrect username and password combination</div>
+          <div class="box has-background-danger">Incorrect username and password combination</div>
           <% } %>
         </div>
         <hr/>

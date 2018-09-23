@@ -13,3 +13,8 @@ dependencies {
     implementation group: 'javax', name: 'javaee-api', version: '7.0'
 
 }
+
+lombok {
+    version = "1.18.2"
+    sha256 = ""
+}

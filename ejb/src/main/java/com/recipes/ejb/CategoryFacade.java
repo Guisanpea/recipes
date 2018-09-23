@@ -6,14 +6,13 @@
 package com.recipes.ejb;
 
 import com.recipes.entities.Category;
-import com.recipes.entities.Level;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import static com.recipes.utils.JpaResultHelper.getSingleResultOrNull;
+import static com.recipes.ejb.support.JpaResultHelper.getSingleResultOrNull;
 
 /**
  *

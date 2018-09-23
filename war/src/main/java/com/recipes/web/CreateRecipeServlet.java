@@ -4,7 +4,7 @@ import com.recipes.ejb.RecipeFacade;
 import com.recipes.ejb.UserFacade;
 import com.recipes.entities.Recipe;
 import com.recipes.entities.User;
-import utils.RecipeSupport;
+import com.recipes.web.support.RecipeSupport;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;

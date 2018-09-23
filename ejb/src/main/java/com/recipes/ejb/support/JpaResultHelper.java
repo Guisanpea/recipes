@@ -1,4 +1,4 @@
-package com.recipes.utils;
+package com.recipes.ejb.support;
 
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;

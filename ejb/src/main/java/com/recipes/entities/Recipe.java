@@ -38,7 +38,6 @@ public class Recipe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -63,6 +62,7 @@ public class Recipe implements Serializable {
     private List<Ingredient> ingredientList;
     @ManyToMany(mappedBy = "recipeList")
     private List<Category> categoryList;
+    @JoinColumn(name = "levelId", referencedColumnName = "id")
     @ManyToOne
     private Level levelId;
     @JoinColumn(name = "userId", referencedColumnName = "id")

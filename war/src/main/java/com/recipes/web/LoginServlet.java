@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -23,22 +24,30 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirection(request));
-
-        dispatcher.forward(request, response);
+        response.sendRedirect(redirection(request));
     }
 
     private String redirection(HttpServletRequest request) {
         return Optional.ofNullable(userFacade.findByUsername(request.getParameter("username")))
                 .filter(user -> correctPassword(user, request.getParameter("password")))
-                .map(user -> "/recipeList")
+                .map(user -> {
+                    manageSession(request, user);
+                    return "listRecipes";
+                })
                 .orElseGet(() -> {
                     request.setAttribute("incorrectLogin", true);
-                    return "/login.jsp";
+                    return "login.jsp";
                 });
     }
 
+    private void manageSession(HttpServletRequest request, User user) {
+        HttpSession session = request.getSession(true);
+
+        if (session.isNew())
+            session.setAttribute("user", user);
+    }
+
     private boolean correctPassword(User user, String password) {
-        return ENCRYPTOR.checkPassword(user.getHashedPassword(), password);
+        return ENCRYPTOR.checkPassword(password, user.getHashedPassword());
     }
 }

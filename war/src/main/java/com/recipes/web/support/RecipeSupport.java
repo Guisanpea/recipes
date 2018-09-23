@@ -1,4 +1,4 @@
-package utils;
+package com.recipes.web.support;
 
 import com.recipes.ejb.CategoryFacade;
 import com.recipes.ejb.IngredientFacade;

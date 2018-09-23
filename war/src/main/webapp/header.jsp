@@ -1,10 +1,17 @@
+<%@ page import="java.util.Optional" %>
+<%@ page import="java.util.Objects" %>
 <%--
-  Created by IntelliJ IDEA.
+Created by IntelliJ IDEA.
   User: archie
   Date: 17/09/18
   Time: 18:11
   To change this template use File | Settings | File Templates.
 --%>
+<%
+  if(Objects.isNull(request.getSession().getAttribute("user"))){
+      response.sendRedirect("login.jsp");
+  }
+%>
 <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
 <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
 <section class="hero is-info is-medium">

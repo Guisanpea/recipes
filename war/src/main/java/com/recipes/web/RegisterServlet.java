@@ -36,21 +36,22 @@ public class RegisterServlet extends HttpServlet {
 
     private String redirect(HttpServletRequest request, String username) {
         return Optional.ofNullable(userFacade.findByUsername(username))
-                .map(user -> {
-                    request.setAttribute("incorrectRegister", true);
-                    return "/register.jsp";
-                }).orElseGet(() -> {
-                    createUser(request);
-                    return "/login.jsp";
-                });
+              .map(user -> {
+                  request.setAttribute("incorrectRegister", true);
+                  return "/register.jsp";
+              }).orElseGet(() -> {
+                  createUser(request);
+                  return "/login.jsp";
+              });
     }
 
     private void createUser(HttpServletRequest request) {
         userFacade.create(User.builder()
-                .hashedPassword(ENCRYPTORS.encryptPassword(request.getParameter("password")))
-                .birthdate(getBirthDate(request))
-                .fullName(request.getParameter("fullName"))
-                .build());
+              .hashedPassword(ENCRYPTORS.encryptPassword(request.getParameter("password")))
+              .birthdate(getBirthDate(request))
+              .fullName(request.getParameter("fullName"))
+              .name(request.getParameter("username"))
+              .build());
     }
 
     @SneakyThrows(ParseException.class)

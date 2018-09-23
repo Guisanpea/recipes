@@ -11,7 +11,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>bulma cards</title>
+  <title>Recipes</title>
   <link rel="stylesheet" href="resources/css/recipes.css">
 </head>
 

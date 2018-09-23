@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id=":ejb:main" external.linked.project.path="$MODULE_DIR$/../../../ejb" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="org.tecappweb" external.system.module.type="sourceSet" external.system.module.version="0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="" />
+        <datasource-mapping>
+          <factory-entry name="ejbPU" />
+        </datasource-mapping>
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/../../../ejb/src/main/resources/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../../ejb/out/production/classes" />
     <exclude-output />

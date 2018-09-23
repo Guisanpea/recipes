@@ -6,10 +6,9 @@
 package com.recipes.ejb;
 
 import com.recipes.entities.User;
-import static com.recipes.utils.JpaResultHelper.getSingleResultOrNull;
+import static com.recipes.ejb.support.JpaResultHelper.getSingleResultOrNull;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 

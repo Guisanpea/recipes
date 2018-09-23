@@ -1,7 +1,7 @@
 package com.recipes.web;
 
 import com.recipes.ejb.RecipeFacade;
-import utils.RecipeSupport;
+import com.recipes.web.support.RecipeSupport;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
